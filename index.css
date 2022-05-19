@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  font-size: 0;
+  font-family: "微软雅黑";
+  padding: 0 0.15rem;
+}
+
+.head_title {
+  text-align: center;
+  font-size: 0.22rem;
+  font-weight: 700;
+  color: #f36d00;
+  padding: 0.3rem 0 0.4rem;
+}
+
+.img-box {
+  width: 100%;
+}
+
+.img-box img {
+  width: 100%;
+}
+
+.form-box {
+  padding: 0 0.15rem;
+}
+
+.form-item {
+  flex: 1;
+  font-size: 0;
+  margin: 0.15rem 0;
+}
+
+.item-input {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #cbcbcb;
+  padding: 0 0.1rem;
+}
+
+.item-input {
+  height: 0.32rem;
+  line-height: 0.32rem;
+  background: #f8f8f8;
+  outline: none;
+}
+
+.item-input:hover {
+  border: 1px solid #007adb;
+}
+
+.submit-box {
+  padding-top: 0.45rem;
+  width: 100%;
+  text-align: center;
+}
+
+.submit-box .btn {
+  width: 1.6rem;
+  height: 0.36rem;
+  color: #fff;
+  font-size: 0.16rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.2rem;
+  background: #f60;
+}
+
+.submit-box .btn:active {
+  opacity: 0.8;
+}
+
+.flex {
+  display: flex;
+}
+
+@media screen and (orientation: portrait) and (max-width: 720px) {
+  .head_title {
+    font-size: 0.18rem;
+  }
+}
+
+.loading-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .8);
+}
+
+.spinner {
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+  margin: 2rem auto;
+}
+
+.spinner>div {
+  background-color: #fff;
+  height: 100%;
+  width: 3px;
+  display: inline-block;
+
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+
+  0%,
+  40%,
+  100% {
+    -webkit-transform: scaleY(0.4)
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0)
+  }
+}
+
+@keyframes sk-stretchdelay {
+
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }
+
+  20% {
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}

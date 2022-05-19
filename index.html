@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+  <title>河南社保表单验证</title>
+</head>
+<link rel="stylesheet" href="./index.css">
+<style>
+  #v_container {
+    width: 1.5rem;
+  }
+</style>
+<script>
+  (function (win) {
+    var doc = win.document
+    var docEl = doc.documentElement
+    var tid
+
+    function refreshRem() {
+      var width = docEl.getBoundingClientRect().width
+      if (width > 540) {
+        width = 540
+      }
+      var rem = width / 7.5 * 2
+
+      docEl.style.fontSize = rem + 'px'
+    }
+
+    win.addEventListener(
+      'resize',
+      function () {
+        clearTimeout(tid)
+        tid = setTimeout(refreshRem, 300)
+      },
+      false
+    )
+    win.addEventListener(
+      'pageshow',
+      function (e) {
+        if (e.persisted) {
+          clearTimeout(tid)
+          tid = setTimeout(refreshRem, 300)
+        }
+      },
+      false
+    )
+
+    refreshRem()
+  })(window)
+</script>
+
+<body>
+  <div class="container">
+    <div class="head_title">河南社保电子表单在线验证平台</div>
+    <div class="img-box">
+      <img src="http://222.143.34.121/form/images/N_bd04.jpg" alt="">
+    </div>
+    <div class="form-box">
+      <div class="form-item">
+        <input id="certificateNo" class="item-input" type="text" placeholder="请输入32位验证号码">
+      </div>
+      <div class="form-item flex">
+
+        <input id="verificationCode" class="item-input" type="text" placeholder="请输入图片的验证码">
+        <div id="v_container"></div>
+      </div>
+    </div>
+    <div class="submit-box">
+      <button id="submit" class="btn">查询</button>
+    </div>
+
+    <!-- <div id="loadingBox" class="loading-box">
+      <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+    </div> -->
+  </div>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="./gVerify.js"></script>
+<script>
+  const verifyCode = new GVerify('v_container')
+  const code = getQueryString('code')
+
+  if (code) {
+    $('#certificateNo').val(code)
+  }
+
+  $('#submit').click(function () {
+    const certificateNoVal = $('#certificateNo').val()
+    const verificationCodeVal = $('#verificationCode').val()
+
+    if (!certificateNoVal) {
+      alert('请输入32位验证号码!')
+      return
+    }
+
+    if (!verificationCodeVal) {
+      alert('请输入验证码！')
+      return
+    }
+
+    const res = verifyCode.validate(verificationCodeVal)
+
+    if (!res) {
+      alert('请输入正确的验证码!')
+
+      return
+    }
+
+    if (certificateNoVal == '7d41bddeb023425f9ae76784d1e16e5f') {
+      window.location.href = './preview1.html'
+
+      return
+    }
+
+    if (certificateNoVal == '7d41bddeb083825f1aa75784d2e16t0g') {
+      window.location.href = './preview2.html'
+
+      return
+    }
+
+    if (certificateNoVal == '7d41bddeb123871r1ea70794d1t17t1j') {
+      window.location.href = './preview3.html'
+
+      return
+    }
+
+    setTimeout(function () {
+      alert('未查询到任何信息,请检查32位验证号码!')
+    }, 800)
+
+  })
+
+  function getQueryString(name) {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
+    var r = window.location.search.substr(1).match(reg)
+    if (r != null) return unescape(r[2])
+    return null
+  }
+</script>
+
+</html>
